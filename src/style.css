@@ -1,4 +1,10 @@
+@font-face {
+  font-family: 'MyFont';
+  src: url('./my.ttf');
+}
+
 .hello {
   color: red;
   background: url(./flycat.gif);
+  font-family: 'MyFont';
 }
