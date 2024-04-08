@@ -1,12 +1,10 @@
-import _ from "lodash";
-
-function component() {
+async function getComponent() {
   const element = document.createElement("div");
-
-  // 执行这一行需要引入 lodash（目前通过 script 脚本引入）
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
-
+  const { default: _ } = await import("lodash");
+  element.innerHTML = _.join(["Helllo", "webpack"], " ");
   return element;
 }
 
-document.body.appendChild(component());
+getComponent().then((component) => {
+  document.body.appendChild(component);
+});

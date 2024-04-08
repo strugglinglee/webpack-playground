@@ -54,6 +54,29 @@ optimization: {
 dist                
 ├─ index.bundle.js  
 ├─ index.html       
-└─ print.bundle.js   
+├─ print.bundle.js   
+└─ vendors-node_modules_lodash_lodash_js.bundle.js
+```
+
+- 动态导入
+```js
+// /src/index.js
+async function getComponent() {
+  const element = document.createElement("div");
+  const { default: _ } = await import("lodash");
+  element.innerHTML = _.join(["Helllo", "webpack"], " ");
+  return element;
+}
+
+getComponent().then((component) => {
+  document.body.appendChild(component);
+});
+```
+
+打包之后文件目录如下
+```
+dist                
+├─ index.bundle.js  
+├─ index.html       
 └─ vendors-node_modules_lodash_lodash_js.bundle.js
 ```
