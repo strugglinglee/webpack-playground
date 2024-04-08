@@ -18,6 +18,8 @@ module.exports = {
   },
   plugins: [new HtmlWebpackPlugin({ title: "development" })],
   optimization: {
-    runtimeChunk: "single",
+    splitChunks: {
+      chunks: "all",
+    },
   },
 };

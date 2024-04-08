@@ -28,6 +28,16 @@
    runtimeChunk: 'single'
  }
 ```
+打包之后文件目录如下
+```
+dist                  
+├─ index.bundle.js    
+├─ index.html         
+├─ print.bundle.js    
+├─ runtime.bundle.js  
+└─ shared.bundle.js   
+```
+
 - 防止重复方法之二：SplitChunksPlugin
 > 直接在webpack.config.js中配置optimization选项
 
@@ -37,5 +47,13 @@ optimization: {
     chunks: 'all'
   }
 }
+```
+打包之后文件目录如下
 
+```
+dist                
+├─ index.bundle.js  
+├─ index.html       
+└─ print.bundle.js   
+└─ vendors-node_modules_lodash_lodash_js.bundle.js
 ```
