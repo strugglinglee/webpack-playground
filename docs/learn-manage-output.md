@@ -22,3 +22,7 @@ dist
 ├─ index.html                   
 └─ print.bundle.js              
 ```
+
+
+- 使用 html-webpack-plugin 插件，自动生成 index.html，并自动引入bundle
+- 自动清理文件夹：在webpack.config.js文件中的output字段里面设置clean为true
