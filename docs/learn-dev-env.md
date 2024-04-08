@@ -23,6 +23,7 @@ webpack-dev-server 配置
         runtimeChunk: 'single'
     }
 }
+> 如果想要在一个 HTML 页面上使用多个入口起点，还需设置 optimization.runtimeChunk: 'single' ?
 ```
 3. npm script 中添加运行webpack-dev-server的命令
 ```js
