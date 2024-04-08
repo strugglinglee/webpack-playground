@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  mode: 'development',
   entry: {
     index: "./src/index.js",
     print: "./src/print.js",
@@ -11,5 +12,5 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     clean: true
   },
-  plugins: [new HtmlWebpackPlugin({ title: "管理输出" })],
+  plugins: [new HtmlWebpackPlugin({ title: "development" })],
 };
