@@ -1,18 +1,17 @@
 import _ from "lodash";
-import "./style.css";
-import Icon from "./flycat.gif";
+import printMe from "./print";
 
 function component() {
   const element = document.createElement("div");
 
   // 执行这一行需要引入 lodash（目前通过 script 脚本引入）
   element.innerHTML = _.join(["Hello", "webpack"], " ");
-  element.classList.add("hello");
 
-  const myIcon = new Image();
-  myIcon.src = Icon;
+  const btn = document.createElement("button");
+  btn.innerHTML = "print";
+  btn.addEventListener("click", printMe);
+  element.appendChild(btn)
 
-  element.appendChild(myIcon);
   return element;
 }
 
