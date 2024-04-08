@@ -8,8 +8,15 @@ module.exports = {
     static: "./dist",
   },
   entry: {
-    index: "./src/index.js",
-    print: "./src/print.js",
+    index: {
+      import: "./src/index.js",
+      dependOn: 'shared'
+    },
+    print: {
+      import: "./src/print.js",
+      dependOn: 'shared'
+    },
+    shared: 'lodash',
   },
   output: {
     filename: "[name].bundle.js",
