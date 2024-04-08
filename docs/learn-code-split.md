@@ -7,4 +7,24 @@
   2. 防止重复：使用入口依赖或者 SplitChunksPlugin 去重和分离 chunk
   3. 动态导入：通过模块的内联函数调用分离代码
 
-
+- 防止重复
+> 在webpack.config.js文件中配置deepOn选项，在多个chunk中共享模块
+> 如果想要在一个 HTML 页面上使用多个入口起点，还需设置 optimization.runtimeChunk: 'single'
+```js
+ entry: {
+    index: './src/index.js',
+    print: './src/print.js',
+    index: {
+      import: './src/index.js',
+      dependOn: 'shared',
+    },
+    another: {
+      import: './src/print.js',
+      dependOn: 'shared',
+    },
+    shared: 'lodash',
+   },
+ optimization: {
+   runtimeChunk: 'single'
+ }
+```
