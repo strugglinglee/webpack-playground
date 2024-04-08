@@ -1,3 +1,3 @@
-export default function printMe() {
-  console.log("print.js call");
-}
+import _ from 'lodash';
+
+console.log(_.join(['Another', 'module', 'loaded!'], ' '));
