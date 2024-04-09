@@ -11,9 +11,13 @@ module.exports = {
     index: "./src/index.js",
   },
   output: {
-    filename: "[name].[contenthash].js",
+    filename: "webpack.numbers.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
+    library: {
+      name: 'webpackNumbers',
+      type: 'umd',
+    },
   },
   plugins: [new HtmlWebpackPlugin({ title: "development" })],
   optimization: {
