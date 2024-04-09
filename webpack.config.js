@@ -1,42 +1,40 @@
 const path = require("path");
-// const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-module.exports = {
-  mode: "development",
-  devtool: "inline-source-map",
-  devServer: {
-    static: "./dist",
-  },
-  entry: "./src/index.js",
-  output: {
-    filename: "webpack.numbers.js",
-    path: path.resolve(__dirname, "dist"),
-    clean: true,
-    // library: 'webpackNumbers',
-    library: {
-      name: 'webpackNumbers',
-      type: 'umd',
+module.exports = (env) => {
+  console.log(env, 'env')
+  return {
+    mode: "development",
+    devtool: "inline-source-map",
+    devServer: {
+      static: "./dist",
     },
-  },
-  externals: {
-    lodash: {
-      commonjs: 'lodash',
-      commonjs2: 'lodash',
-      amd: 'lodash',
-      root: '_',
+    entry: "./src/index.js",
+    output: {
+      filename: "bundle.js",
+      path: path.resolve(__dirname, "dist"),
+      clean: true,
     },
-  },
-  // plugins: [new HtmlWebpackPlugin({ title: "development" })],
-  // optimization: {
-  //   runtimeChunk: 'single',
-  //   splitChunks: {
-  //     cacheGroups: {
-  //       vendor: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         name: "vendors",
-  //         chunks: "all",
-  //       },
-  //     },
-  //   },
-  // },
+    externals: {
+      lodash: {
+        commonjs: "lodash",
+        commonjs2: "lodash",
+        amd: "lodash",
+        root: "_",
+      },
+    },
+    plugins: [new HtmlWebpackPlugin({ title: "development" })],
+    // optimization: {
+    //   runtimeChunk: 'single',
+    //   splitChunks: {
+    //     cacheGroups: {
+    //       vendor: {
+    //         test: /[\\/]node_modules[\\/]/,
+    //         name: "vendors",
+    //         chunks: "all",
+    //       },
+    //     },
+    //   },
+    // },
+  };
 };
