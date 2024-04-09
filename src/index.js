@@ -1,14 +1,22 @@
 import _ from "lodash";
-import Print from "./print";
+import numRef from "./ref.json";
 
-function component() {
-  const element = document.createElement("div");
-
-  // lodash 现在使用 import 引入
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
-  element.onclick = Print.bind(null, "Hello webpack!");
-  console.log('hihi')
-  return element;
+export function numToWord(num) {
+  return _.reduce(
+    numRef,
+    (accum, ref) => {
+      return ref.num === num ? ref.word : accum;
+    },
+    ""
+  );
 }
 
-document.body.appendChild(component());
+export function wordToNum(word) {
+  return _.reduce(
+    numRef,
+    (accum, ref) => {
+      return ref.word === word && word.toLowerCase() ? ref.num : accum;
+    },
+    -1
+  );
+}
