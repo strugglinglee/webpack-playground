@@ -1,5 +1,5 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+// const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -7,29 +7,36 @@ module.exports = {
   devServer: {
     static: "./dist",
   },
-  entry: {
-    index: "./src/index.js",
-  },
+  entry: "./src/index.js",
   output: {
     filename: "webpack.numbers.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
+    // library: 'webpackNumbers',
     library: {
       name: 'webpackNumbers',
       type: 'umd',
     },
   },
-  plugins: [new HtmlWebpackPlugin({ title: "development" })],
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
-        },
-      },
+  externals: {
+    lodash: {
+      commonjs: 'lodash',
+      commonjs2: 'lodash',
+      amd: 'lodash',
+      root: '_',
     },
   },
+  // plugins: [new HtmlWebpackPlugin({ title: "development" })],
+  // optimization: {
+  //   runtimeChunk: 'single',
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendor: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         name: "vendors",
+  //         chunks: "all",
+  //       },
+  //     },
+  //   },
+  // },
 };
