@@ -13,3 +13,16 @@
 
 bundle：捆绑好的最终文件。如果说，chunk 是各种片段，那么 bundle 就是一堆 chunk 组成的“集大成者”，比如上面说的 main.js 就属于 bundle。当然它也类似于电路上原先是各种散乱的零件，最终组成一个集成块的感觉。它经历了加载和编译的过程，是源文件的最终版本。
 简而言之，chunk 是 webpack 处理过程中的一组模块，bundle 是一个或多个 chunk 组成的集合。
+
+
+## mainfest
+
+webpack 通过 manifest 追踪所有模块到输出的 bundle 之间的映射
+
+## DllPlugin 
+使用 DllPlugin 为更改不频繁的代码生成单独的编译结果。尽管这增加了构建过程的复杂度，但是可以提高应用程序的编译速度。
+
+## SplitChunksPlugin
+
+在多页面应用程序中使用 SplitChunksPlugin。
+在多页面应用程序中使用 SplitChunksPlugin，并开启 async 模式。
