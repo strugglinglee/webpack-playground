@@ -102,3 +102,21 @@ function component() {
 
  document.body.appendChild(component());
  ```
+
+## ESM
+
+ES模块，简称ESM。
+- 关键字 export 允许将 ESM 中的内容暴露给其他模块
+- 关键字 import 允许从其他模块获取引用到 ESM 中
+- 将模块标记为ESM
+```js
+// package.json
+{
+  "type": "module"
+}
+```
+- 文件还可以通过使用 .mjs 或 .cjs 扩展名来设置模块类型。 
+- .mjs 将它们强制置为 ESM，.cjs 将它们强制置为 CommonJs。
+- 在使用 text/javascript 或 application/javascript mime type 的 DataURI 中，也将使用 ESM
+- non-ESM 仅能导入 default 导出的模块，不支持命名导出的模块
+- CommonJs 语法不可用: require, module, exports, __filename, __dirname
