@@ -1,5 +1,6 @@
 import _ from "lodash";
 import numRef from "./ref.json";
+import { afunc } from "./print";
 
 export function numToWord(num) {
   return _.reduce(

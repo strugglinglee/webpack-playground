@@ -26,3 +26,46 @@ webpack 通过 manifest 追踪所有模块到输出的 bundle 之间的映射
 
 在多页面应用程序中使用 SplitChunksPlugin。
 在多页面应用程序中使用 SplitChunksPlugin，并开启 async 模式。
+
+## HMR（模块热替换）
+
+> webpack中最有用的功能之一，能够在不刷新页面的情况下更新所有类型的模块
+
+> 从 webpack-dev-server v4.0.0 开始，模块热替换是默认开启的
+
+
+## Tree shaking
+
+通常用于移除JS上下文的死代码，依赖于ES模块的`静态结构`特性，例如`import`和`export`。
+
+- package.json的`sideEffects`属性，可以标记哪些文件是真正的ES模块，由此可以安全的删除未被使用的文件。
+```json
+{
+    "sideEffects": false
+}
+```
+> 在纯粹的ES模块世界中，很容易识别哪些文件有副作用，在项目中无法保证这种纯度的时候，我们有必要告诉webpack哪些文件是纯粹的
+>
+> 【副作用】指在导入时会执行特殊行为的代码，而不是仅仅暴露一个或多个导出内容。
+> polyfill 就是一个例子，尽管其通常不提供导出，但是会影响全局作用域，因此 polyfill 将被视为一个副作用。
+- 如果代码的确存在某些副作用，可以设置package.json文件中的sideEffects字段为一个数组
+```json
+{
+    "sideEffects": ['./src/some-side-effectful-file.js']
+}
+```
+- 将mode设置为`development`，可以确保bundle不被压缩
+
+> usedExports是默认开启的？
+
+```js
+// webpack.config.js
+{
+    "mode": 'development',
+    "optimization": {
+        "usedExports": true
+    }
+}
+```
+
+- 通过 `/*#__PURE__*/` 注释可以告诉 webpack 某个函数调用无副作用

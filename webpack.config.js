@@ -24,17 +24,18 @@ module.exports = (env) => {
       },
     },
     plugins: [new HtmlWebpackPlugin({ title: "development" })],
-    // optimization: {
-    //   runtimeChunk: 'single',
-    //   splitChunks: {
-    //     cacheGroups: {
-    //       vendor: {
-    //         test: /[\\/]node_modules[\\/]/,
-    //         name: "vendors",
-    //         chunks: "all",
-    //       },
-    //     },
-    //   },
-    // },
+    optimization: {
+      usedExports: true
+      // runtimeChunk: 'single',
+      // splitChunks: {
+      //   cacheGroups: {
+      //     vendor: {
+      //       test: /[\\/]node_modules[\\/]/,
+      //       name: "vendors",
+      //       chunks: "all",
+      //     },
+      //   },
+      // },
+    },
   };
 };
