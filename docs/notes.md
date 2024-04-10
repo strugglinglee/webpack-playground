@@ -69,3 +69,36 @@ webpack 通过 manifest 追踪所有模块到输出的 bundle 之间的映射
 ```
 
 - 通过 `/*#__PURE__*/` 注释可以告诉 webpack 某个函数调用无副作用
+
+## DefinePlugin
+可以创建一个在编译时可以配置的全局常量。主要针对我们在编译时，区分 开发、测试、生产环境。
+因为node.js里的环境变量，process.env.NODE_ENV，只能在node的环境里拿到。而webpack.DefinePlugin提供的可以在浏览器环境里拿到。
+
+## 懒加载
+是先把你的代码在一些逻辑断点处分离开，然后在一些代码块中完成某些操作后，立即引用或即将引用另外一些新的代码块。这样加快了应用的初始加载速度，减轻了它的总体体积，因为某些代码块可能永远不会被加载。
+
+> 注意当调用 ES6 模块的 import() 方法（引入模块）时，必须指向模块的 .default 值，因为它才是 promise 被处理后返回的实际的 module 对象。
+
+```js
+function component() {
+  const element = document.createElement('div');
+  const button = document.createElement('button');
+  const br = document.createElement('br');
+
+  button.innerHTML = 'Click me and look at the console!';
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.appendChild(br);
+  element.appendChild(button);
+
+  // Note that because a network request is involved, some indication
+  // of loading would need to be shown in a production-level site/app.
+  button.onclick = e => import(/* webpackChunkName: "print" */ './print').then(module => {
+    const print = module.default;
+    print();
+  });
+
+  return element;
+}
+
+ document.body.appendChild(component());
+ ```
